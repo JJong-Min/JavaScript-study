@@ -1,0 +1,4 @@
+{
+    "name": "Ratel",
+    "exercise": ["basketball", "football", "volleyball"]
+}
