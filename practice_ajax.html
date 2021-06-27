@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+
+    <!-- jQuery를 import 합니다 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <style type="text/css">
+        div.question-box {
+            margin: 10px 0 20px 0;
+        }
+    </style>
+
+    <script>
+        function q1() {
+            $.ajax({
+                type: "GET",
+                url: "http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/RealtimeCityAir/1/99",
+                data:{},
+                success: function(response){
+                    $("#names-q1").text("")
+                    let data = response["RealtimeCityAir"]["row"]
+                    for (let i=0; i<data.length; i++) {
+                        let gu_name = data[i]["MSRSTE_NM"]
+                        let mise_point = data[i]["IDEX_MVL"]
+                        let text = `<li>${gu_name}: ${mise_point}</li>`
+                        $('#names-q1').append(text)
+                    } 
+                }
+                        
+
+
+            })
+           
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="question-box">
+        <h2>서울시 OpenAPI(실시간 미세먼지 상태)를 이용하기</h2>
+        <button onclick="q1()">불러오기</button>
+        <ul id="names-q1">
+            <li>htfuf</li>
+            <li>ufuf</li>
+        </ul>
+    </div>
+</body>
+
+</html>
